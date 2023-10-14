@@ -14,7 +14,6 @@ public class BankingOperations {
         BankingRegister.transference(entityManager, transference);
 
         entityManager.getTransaction().commit();
-
     }
     public static void lend(EntityManager entityManager, Account account, Double value, Double interest, Integer term){
         Lend lend = new Lend(null,account.getId(),value,interest,term,"simple",LocalDate.now());
@@ -25,17 +24,15 @@ public class BankingOperations {
         BankingRegister.lend(entityManager, lend);
 
         entityManager.getTransaction().commit();
-
     }
-    public static void investiment(EntityManager entityManager,Account account, String type, Double value){
+    public static void investment(EntityManager entityManager, Account account, String type, Double value){
         Investiment investiment = new Investiment(null,account.getId(),type,value, LocalDate.now());
 
         entityManager.getTransaction().begin();
 
         account.withdraw(value);
-        BankingRegister.investiment(entityManager, investiment);
+        BankingRegister.investment(entityManager, investiment);
 
         entityManager.getTransaction().commit();
-
-    };
+    }
 }

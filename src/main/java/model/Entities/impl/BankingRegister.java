@@ -3,11 +3,11 @@ package model.Entities.impl;
 import javax.persistence.EntityManager;
 
 public class BankingRegister {
-    public static void account(EntityManager entityManager, Account account){
+    public static Account account(EntityManager entityManager, Account account){
         entityManager.getTransaction().begin();
-
         entityManager.persist(account);
         entityManager.getTransaction().commit();
+        return account;
 
     }
 
@@ -16,19 +16,11 @@ public class BankingRegister {
     }
 
     public static void lend(EntityManager entityManager, Lend lend){
-        entityManager.getTransaction().begin();
-
         entityManager.persist(lend);
-        entityManager.getTransaction().commit();
-
     }
 
-    public static void investiment(EntityManager entityManager, Investiment investiment){
-        entityManager.getTransaction().begin();
-
+    public static void investment(EntityManager entityManager, Investiment investiment){
         entityManager.persist(investiment);
-        entityManager.getTransaction().commit();
-
     }
 }
 
