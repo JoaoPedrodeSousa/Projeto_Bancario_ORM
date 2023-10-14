@@ -13,14 +13,14 @@ public class Lend extends Log implements IInterestOperations {
     private String status;
     private Double amount;
 
-    public Lend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, LocalDate date, Double amount){
+    public Lend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, LocalDate date){
         super(id, interestType, valueLend, date);
 
         setIdAccount(idAccount);
         this.interest = interest;
         this.term = term;
         this.status = status;
-        this.amount = amount;
+        this.amount = interestType.equals("simple") ? simpleInterest() : compoundInterest();
     }
 
     public Double getInterest() {
@@ -56,12 +56,14 @@ public class Lend extends Log implements IInterestOperations {
         this.amount = amount;
     }
 
-    public void compoundInterest() {
+    public Double compoundInterest() {
         setAmount(IInterestOperations.super.compoundInterest(getValue(), term, getInterest()));
+        return amount;
     }
 
-    public void simpleInterest() {
+    public Double simpleInterest() {
         setAmount(IInterestOperations.super.simpleInterest(getValue(), term, getInterest()));
+        return amount;
     }
 
     @Override
