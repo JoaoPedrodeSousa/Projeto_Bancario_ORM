@@ -3,51 +3,23 @@ package model.Entities.impl;
 
 import model.Entities.IOperationsAccount;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Entity
 public class Account implements IOperationsAccount, Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer id = null;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String owner;
     private final String register;
     private Double balance = 0.0;
-
-    public Account(String owner, String register) {
-        this.owner = owner;
-        if(register.length() != 10){
-            throw new RuntimeException();
-        }
-
-        else {
-            this.register = register;
-        }
-    }
-
-    public Account(Integer id, String owner, String register) {
-        this.id = id;
-        this.owner = owner;
-
-        if(register.length() != 10){
-            throw new RuntimeException();
-        }
-
-        else {
-            this.register = register;
-        }
-    }
-
-    public Account(String owner, String register, Double balance) {
-        this.owner = owner;
-        this.balance = balance;
-
-        if(register.length() != 10){
-            throw new RuntimeException();
-        }
-        else {
-            this.register = register;
-        }
-    }
 
     public Account(Integer id, String owner, String register, Double balance) {
         this.id = id;

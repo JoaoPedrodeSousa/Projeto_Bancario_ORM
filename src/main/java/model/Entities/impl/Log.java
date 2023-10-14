@@ -1,27 +1,28 @@
 package model.Entities.impl;
 
 import model.Entities.ILog;
+import net.bytebuddy.asm.Advice;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
+@MappedSuperclass
 public abstract class Log implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer id = null;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "id_account")
     private Integer idAccount;
-    private Date date;
+    private LocalDate date;
     private String type;
     private Double value;
 
-
-    public Log(Integer id, String type, Double value) {
-        this.id = id;
-        this.type = type;
-        this.value = value;
-    }
-
-    public Log(Integer id, String type, Double value, Date date) {
+    public Log(Integer id, String type, Double value, LocalDate date) {
         this.id = id;
         this.type = type;
         this.value = value;
@@ -52,11 +53,11 @@ public abstract class Log implements Serializable {
         this.type = type;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

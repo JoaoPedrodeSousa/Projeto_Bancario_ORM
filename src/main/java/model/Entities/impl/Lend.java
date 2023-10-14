@@ -2,29 +2,25 @@ package model.Entities.impl;
 
 import model.Entities.IInterestOperations;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import java.time.LocalDate;
 import java.util.Objects;
 
-public class LogLend extends Log implements IInterestOperations {
+@Entity
+public class Lend extends Log implements IInterestOperations {
     private Double interest;
     private Integer term;
     private String status;
     private Double amount;
 
-
-    public LogLend(Integer id, String type, Double value) {
-        super(id, type, value);
-    }
-
-    public LogLend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
-        super(id, interestType, valueLend);
+    public Lend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, LocalDate date, Double amount){
+        super(id, interestType, valueLend, date);
 
         setIdAccount(idAccount);
         this.interest = interest;
         this.term = term;
         this.status = status;
         this.amount = amount;
-        setDate(date);
     }
 
     public Double getInterest() {
@@ -71,9 +67,9 @@ public class LogLend extends Log implements IInterestOperations {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LogLend)) return false;
+        if (!(o instanceof Lend)) return false;
         if (!super.equals(o)) return false;
-        LogLend logLend = (LogLend) o;
+        Lend logLend = (Lend) o;
         return Objects.equals(getInterest(), logLend.getInterest()) && Objects.equals(getTerm(), logLend.getTerm()) && Objects.equals(getStatus(), logLend.getStatus()) && Objects.equals(getAmount(), logLend.getAmount());
     }
 
