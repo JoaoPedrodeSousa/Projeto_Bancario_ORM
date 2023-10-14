@@ -13,13 +13,12 @@ public class Lend extends Log implements IInterestOperations {
     private String status;
     private Double amount;
 
-    public Lend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, LocalDate date){
+    public Lend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String interestType, LocalDate date){
         super(id, interestType, valueLend, date);
 
         setIdAccount(idAccount);
         this.interest = interest;
         this.term = term;
-        this.status = status;
         this.amount = interestType.equals("simple") ? simpleInterest() : compoundInterest();
     }
 

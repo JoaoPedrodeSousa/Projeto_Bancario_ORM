@@ -1,7 +1,4 @@
-import model.Entities.impl.Account;
-import model.Entities.impl.BankingRegister;
-import model.Entities.impl.Lend;
-import model.Entities.impl.Log;
+import model.Entities.impl.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,11 +20,11 @@ public class Program {
 
         BankingRegister.account(em, acc1);
         BankingRegister.account(em, acc2);
+        BankingOperations.transfer(em,acc1,acc2,250.0);
 
 
         System.out.println("--- TUDO OK!!!!!!!");
 
-        em.refresh();
         em.close();
         emf.close();
     }
