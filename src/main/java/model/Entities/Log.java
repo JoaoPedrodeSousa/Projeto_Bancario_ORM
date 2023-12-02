@@ -1,8 +1,5 @@
 package model.Entities.impl;
 
-import model.Entities.ILog;
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
