@@ -1,4 +1,4 @@
-package model.Entities.impl;
+package model.Entities;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;

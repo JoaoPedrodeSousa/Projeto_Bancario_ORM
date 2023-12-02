@@ -1,6 +1,4 @@
-package model.Entities.impl;
-
-import model.Entities.IInterestOperations;
+package model.Entities;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
